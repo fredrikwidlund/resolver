@@ -1,0 +1,26 @@
+add ["rule","scan",["net","*"],["ports","*"]]
+add ["net","185.102.101.0/24"]
+add ["ports","80", "443"]
+
+rule scan network ports
+rule ssh ip ports
+rule banner tcp
+rule http tcp
+data network 185.102.101/24
+data ports 80,443
+#add history:scan:185.102.101/24:80,443
+data tcp 185.102.101.1,22
+...
+
+
+
+data net 185.102.103.0/24
+rule scan net
+->
+data tcp 185.102.103.2:80 (<- net 185.102.103.0/24)
+rule identify tcp
+->
+data http 185.102.103.2:80 (<- tcp 185.102.102.2:80)
+rule banner http
+->
+data banner 185.102.103.2:80,nginx

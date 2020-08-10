@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo tcp 22
+echo tcp 80
+echo tcp 443
+        

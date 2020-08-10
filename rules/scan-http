@@ -1,0 +1,6 @@
+#!/bin/bash
+
+if [ "$tcp" = "80" ]
+then
+    echo http apache
+fi
